@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;600;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #2c1810;
+    color: #fff;
+    width: 900px;
+    margin: 0 auto;
+  }
+
+  .poster {
+    background: linear-gradient(160deg, #3d2010 0%, #2c1810 40%, #1a0f08 100%);
+    padding: 32px;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    background: linear-gradient(135deg, #8B4513 0%, #6B3410 50%, #4a2008 100%);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(210,140,60,0.3);
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    color: rgba(255,220,160,0.85);
+    margin-top: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Section title badge */
+  .section-badge {
+    background: linear-gradient(135deg, #c8621a, #a04810);
+    border-radius: 20px;
+    padding: 8px 24px;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .section-center { text-align: center; }
+
+  /* Abstract */
+  .abstract-card {
+    background: rgba(255,245,230,0.95);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    color: #1a0f08;
+  }
+
+  .abstract-card p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #2a1808;
+  }
+
+  /* Three column */
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .col-card {
+    background: rgba(255,245,230,0.95);
+    border-radius: 10px;
+    padding: 16px;
+    color: #1a0f08;
+  }
+
+  .col-card .col-title {
+    background: linear-gradient(135deg, #c8621a, #a04810);
+    border-radius: 16px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 12px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .col-card p, .col-card li {
+    font-size: 11px;
+    line-height: 1.65;
+    color: #2a1808;
+  }
+
+  .col-card ul { padding-left: 14px; }
+  .col-card li { margin-bottom: 6px; }
+
+  .problem-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(180,100,40,0.2);
+  }
+  .problem-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .problem-label {
+    font-weight: 700;
+    color: #8B3010;
+    font-size: 11px;
+  }
+
+  .obj-item {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #2a1808;
+  }
+
+  .obj-num {
+    background: #c8621a;
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Two col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* Architecture */
+  .arch-card {
+    background: rgba(255,245,230,0.95);
+    border-radius: 10px;
+    padding: 16px;
+    color: #1a0f08;
+  }
+
+  .arch-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+
+  .arch-table th {
+    background: #c8621a;
+    color: #fff;
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+  }
+
+  .arch-table th:first-child { border-radius: 6px 0 0 0; }
+  .arch-table th:last-child { border-radius: 0 6px 0 0; }
+
+  .arch-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(180,100,40,0.15);
+    color: #2a1808;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .arch-table tr:nth-child(even) td { background: rgba(200,98,26,0.07); }
+
+  /* Testing */
+  .test-card {
+    background: rgba(255,245,230,0.95);
+    border-radius: 10px;
+    padding: 16px;
+    color: #1a0f08;
+  }
+
+  .test-header {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6B3410;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pass-badge {
+    background: #2d7a2d;
+    color: #fff;
+    border-radius: 10px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .test-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .test-item {
+    background: rgba(200,98,26,0.1);
+    border-radius: 8px;
+    padding: 8px 10px;
+    border-left: 3px solid #c8621a;
+  }
+
+  .test-item .test-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6B3410;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
+
+  .test-item .test-score {
+    background: #c8621a;
+    color: #fff;
+    border-radius: 8px;
+    padding: 1px 7px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .test-item p {
+    font-size: 10px;
+    color: #3a1808;
+    line-height: 1.5;
+  }
+
+  /* Conclusion */
+  .conclusion-card {
+    background: rgba(255,245,230,0.95);
+    border-radius: 10px;
+    padding: 16px 20px;
+    color: #1a0f08;
+  }
+
+  .conclusion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+  }
+
+  .conclusion-item {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #2a1808;
+  }
+
+  .bullet {
+    color: #c8621a;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>PhishWatch: A Real-Time Browser Extension for Phishing Website Detection in Web3 Environments</h1>
+    <div class="subtitle">Visual Warning and User Interaction</div>
+  </div>
+
+  <!-- Abstract -->
+  <div class="section-center"><div class="section-badge">Abstract</div></div>
+  <div class="abstract-card">
+    <p>PhishWatch is a lightweight, real-time phishing detection system implemented as a Chrome Manifest V3 browser extension backed by a microservice architecture. This poster focuses on the cloud-backed greylist database, secure API architecture, warning page UI design, and AI chatbot components. A Neon PostgreSQL serverless database stores previously identified phishing URLs for instant blacklist lookups without external API latency. A Go/Gin API backend deployed on Render.com mediates all database access with API key authentication, rate limiting (60 req/min token bucket), and parameterised queries to prevent SQL injection. A full-screen warning page intercepts suspicious sites with structured evidence display, featuring a dark/light theme toggle and 20-second countdown to prevent impulsive bypass. An AI chatbot powered by the Groq API (llama-3.1-8b-instant) is integrated directly into the warning page, providing users with real-time, context-aware security explanations. GitHub Actions workflows ping both services every 5 minutes to prevent free-tier hibernation.</p>
+  </div>
+
+  <!-- Three columns -->
+  <div class="three-col">
+
+    <!-- Problem Statement -->
+    <div class="col-card">
+      <div class="col-title">Problem Statement</div>
+      <div class="problem-item">
+        <div class="problem-label">P1 → Irreversible Asset Loss</div>
+        <p style="font-size:11px;line-height:1.6;color:#2a1808;margin-top:4px;">Blockchain transactions are irreversible — digital assets lost to phishing attacks cannot be recovered (Kshetri, 2023)</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-label">P2 → Users Cannot Identify Phishing</div>
+        <p style="font-size:11px;line-height:1.6;color:#2a1808;margin-top:4px;">Modern phishing pages perfectly clone MetaMask and Uniswap — fake logos and deceptive login forms are nearly indistinguishable (Shobiri, 2022)</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-label">P3 → Existing Tools React Too Slowly</div>
+        <p style="font-size:11px;line-height:1.6;color:#2a1808;margin-top:4px;">Blacklist tools take days to update while phishing sites go live within hours of domain registration (Vevera et al., 2025)</p>
+      </div>
+    </div>
+
+    <!-- Objective -->
+    <div class="col-card">
+      <div class="col-title">Objective</div>
+      <div class="obj-item"><div class="obj-num">1</div><div>Build cloud-backed Neon PostgreSQL greylist — instant blacklist propagation without reinstallation</div></div>
+      <div class="obj-item"><div class="obj-num">2</div><div>Implement secure Go/Gin API with authentication middleware and rate limiting</div></div>
+      <div class="obj-item"><div class="obj-num">3</div><div>Deploy Go API and AI Chatbot on Render.com cloud infrastructure</div></div>
+      <div class="obj-item"><div class="obj-num">4</div><div>Design clear full-screen warning page UI to prevent user financial loss</div></div>
+      <div class="obj-item"><div class="obj-num">5</div><div>Deploy GitHub Actions keep-alive workflows every 5 minutes</div></div>
+      <div class="obj-item"><div class="obj-num">6</div><div>Integrate AI Chatbot for real-time contextual security guidance on warning page</div></div>
+      <div class="obj-item"><div class="obj-num">7</div><div>Adopt Manifest V3 compliant architecture for Chrome Web Store distribution</div></div>
+    </div>
+
+    <!-- Contribution -->
+    <div class="col-card">
+      <div class="col-title">Contribution & Innovation</div>
+      <ul>
+        <li>Cloud-backed blacklist architecture — updates propagate instantly without reinstallation, advancing over static file-based approaches</li>
+        <li>API key auth + rate limiting (token bucket, 60 req/min) — production-grade security on free-tier infrastructure</li>
+        <li>Parameterised queries throughout — SQL injection prevention at database layer</li>
+        <li>Warning page AI chatbot (Groq llama-3.1-8b-instant) — transforms passive block page into interactive security education tool</li>
+        <li>GitHub Actions keep-alive — eliminates cold-start hibernation without paid hosting upgrade</li>
+        <li>Manifest V3 compliant — meets Chrome Web Store security standards, reduces extension attack surface</li>
+        <li>Dark/light theme toggle + 20-second countdown — prevents impulsive bypass, encourages evidence engagement</li>
+        <li>NexaBridge test site (Netlify) — controlled end-to-end detection validation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- System Architecture + Testing -->
+  <div class="two-col">
+
+    <div class="arch-card">
+      <div class="section-center"><div class="section-badge">System Architecture</div></div>
+      <br>
+      <table class="arch-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Technology</th>
+            <th>Responsibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>PhishWatch API</td><td>Go / Gin</td><td>Greylist DB CRUD + auth + rate limit</td></tr>
+          <tr><td>AI Chatbot</td><td>Go / Groq API</td><td>Warning page AI chatbot (llama-3.1-8b-instant)</td></tr>
+          <tr><td>Neon PostgreSQL</td><td>Serverless PG</td><td>Cloud greylist database (grey_urls)</td></tr>
+          <tr><td>GitHub Actions</td><td>CI/CD</td><td>Keep-alive ping every 5 minutes</td></tr>
+          <tr><td>Netlify</td><td>Static hosting</td><td>NexaBridge phishing test site</td></tr>
+          <tr><td>Chrome Extension</td><td>Manifest V3</td><td>URL interception + warning UI</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="test-card">
+      <div class="section-center"><div class="section-badge">Testing Result</div></div>
+      <br>
+      <div class="test-header">
+        27 / 27 test cases passed
+        <span class="pass-badge">✓ ALL PASS</span>
+      </div>
+      <div class="test-grid">
+        <div class="test-item">
+          <div class="test-label">G — Extension Loading <span class="test-score">4/4</span></div>
+          <p>Manifest V3 load, permissions, service worker, host permissions</p>
+        </div>
+        <div class="test-item">
+          <div class="test-label">H — Database Ops <span class="test-score">6/6</span></div>
+          <p>URL check, not found, add, duplicate, update, normalisation</p>
+        </div>
+        <div class="test-item">
+          <div class="test-label">I — API Security <span class="test-score">5/5</span></div>
+          <p>Valid key, invalid key, no key, unauthenticated read, rate limit</p>
+        </div>
+        <div class="test-item">
+          <div class="test-label">J — AI Chatbot <span class="test-score">5/5</span></div>
+          <p>Panel open, AI response, invalid token, empty input, loading state</p>
+        </div>
+        <div class="test-item">
+          <div class="test-label">K — End-to-End <span class="test-score">4/4</span></div>
+          <p>NexaBridge detection, add to DB, greylist hit, persistence</p>
+        </div>
+        <div class="test-item">
+          <div class="test-label">L — Keep-Alive <span class="test-score">3/3</span></div>
+          <p>Initial ping, periodic ping, startup ping</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conclusion -->
+  <div class="section-center"><div class="section-badge">Conclusion</div></div>
+  <div class="conclusion-card">
+    <div class="conclusion-grid">
+      <div class="conclusion-item"><span class="bullet">•</span><span>Cloud-backed Neon PostgreSQL greylist enables instant blacklist propagation without reinstallation, solving the core limitation of static blacklists</span></div>
+      <div class="conclusion-item"><span class="bullet">•</span><span>Lightweight Chrome extension suitable for non-technical Web3 users without any configuration required</span></div>
+      <div class="conclusion-item"><span class="bullet">•</span><span>Go/Gin API with authentication and rate limiting provides production-grade security on free-tier infrastructure</span></div>
+      <div class="conclusion-item"><span class="bullet">•</span><span>Transparent evidence-based warning page builds user security awareness and trust during each interaction</span></div>
+      <div class="conclusion-item"><span class="bullet">•</span><span>AI chatbot transforms warning page from passive alert into interactive security education tool</span></div>
+      <div class="conclusion-item"><span class="bullet">•</span><span>Future work: always-on hosting, TTL for blacklist entries, Firefox support, community reporting feature</span></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
